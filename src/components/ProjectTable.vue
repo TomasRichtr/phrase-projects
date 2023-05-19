@@ -5,8 +5,7 @@
   :pagination="false"
   :loading="projectStore.loading"
   bordered
-  sticky
-  :scroll="{ x: 1500, y: 1000 }"
+  :scroll="{ x: 1500, y: 625 }"
   >>
   <template
    #customFilterDropdown="{ setSelectedKeys, selectedKeys, confirm, clearFilters, column }"
