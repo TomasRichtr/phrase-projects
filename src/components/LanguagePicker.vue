@@ -19,7 +19,7 @@ const languageOptions = computed(() => {
  }));
 });
 
-const filterOption = (input: string, option: any) => {
+const filterOption = (input: string, option: { label: string, value: string }) => {
  return option.label.toLowerCase().indexOf(input.toLowerCase()) >= 0;
 };
 </script>
