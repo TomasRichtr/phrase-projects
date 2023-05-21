@@ -21,11 +21,7 @@ class Api {
    await router.push({ name: ROUTES.PROJECTS_LIST.name });
    return data;
   } catch (err) {
-   const error = err as IAxiosError;
-   notification.error({
-    message: error.response?.status || "Error",
-    description: error.message
-   });
+   this._notifyOnError(err as Error);
   }
  }
 
@@ -34,11 +30,7 @@ class Api {
    const { data } = await axios.get("/api/projects");
    return data._embedded.projects;
   } catch (err) {
-   const error = err as IAxiosError;
-   notification.error({
-    message: error.response?.status || "Error",
-    description: error.message
-   });
+   this._notifyOnError(err as Error);
   }
  }
 
@@ -52,11 +44,7 @@ class Api {
    await router.push({ name: ROUTES.PROJECTS_LIST.name });
    return data;
   } catch (err) {
-   const error = err as IAxiosError;
-   notification.error({
-    message: error.response?.status || "Error",
-    description: error.message
-   });
+   this._notifyOnError(err as Error);
   }
  }
 
@@ -68,12 +56,16 @@ class Api {
     description: "Project deleted successfully"
    });
   } catch (err) {
-   const error = err as IAxiosError;
-   notification.error({
-    message: error.response?.status || "Error",
-    description: error.message
-   });
+   this._notifyOnError(err as Error);
   }
+ }
+
+ _notifyOnError(err: IAxiosError) {
+  const error = err as IAxiosError;
+  notification.error({
+   message: error.response?.status || "Error",
+   description: error.message
+  });
  }
 }
 
