@@ -15,28 +15,30 @@
      ref="searchInput"
      :placeholder="`Search ${column.dataIndex}`"
      :value="selectedKeys[0]"
-     class="w-44 mb-2 block"
+     class="w-full mb-2 block"
      @change="(e) => setSelectedKeys(e.target.value ? [e.target.value] : [])"
      @pressEnter="handleSearch(selectedKeys, confirm, column.dataIndex)"
     />
-    <a-button
-     type="primary"
-     size="small"
-     class="w-24 mr-2"
-     @click="handleSearch(selectedKeys, confirm, column.dataIndex)"
-    >
-     <template #icon>
-      <SearchOutlined />
-     </template>
-     Search
-    </a-button>
-    <a-button
-     size="small"
-     class="w-24"
-     @click="handleReset(clearFilters)"
-    >
-     Reset
-    </a-button>
+    <div class="flex gap-2">
+     <a-button
+      type="primary"
+      size="small"
+      class="w-1/2"
+      @click="handleSearch(selectedKeys, confirm, column.dataIndex)"
+     >
+      <template #icon>
+       <SearchOutlined />
+      </template>
+      Search
+     </a-button>
+     <a-button
+      size="small"
+      class="w-1/2"
+      @click="handleReset(clearFilters)"
+     >
+      Reset
+     </a-button>
+    </div>
    </div>
   </template>
 
