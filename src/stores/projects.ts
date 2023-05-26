@@ -2,6 +2,9 @@ import { defineStore } from "pinia";
 import languages from "language-list";
 import api from "@/helpers/api";
 import { STATUSES } from "@/enums";
+import dayjs from "dayjs";
+import localizedFormat from "dayjs/plugin/localizedFormat";
+dayjs.extend(localizedFormat)
 
 interface ProjectState {
  projects: IProject[];
@@ -34,8 +37,12 @@ const defaultProject: IProject = {
  targetLanguages: [],
  status: STATUSES.NEW,
  dateUpdated: "",
- dateCreated: new Date().toISOString()
+ dateCreated:dayjs().format()
 };
+
+const resolveDate = (date: string) => {
+ return date ? dayjs(date).format('ll') : ''
+}
 
 const useProjectStore = defineStore({
  id: "projects",
@@ -55,9 +62,9 @@ const useProjectStore = defineStore({
     return {
      id: project.id,
      name: project.name,
-     dateCreated: new Date(project.dateCreated).toLocaleDateString(),
-     dateUpdated: new Date(project.dateUpdated).toLocaleDateString(),
-     dateDue: new Date(project.dateDue).toLocaleDateString(),
+     dateCreated: resolveDate(project.dateCreated),
+     dateUpdated: resolveDate(project.dateUpdated),
+     dateDue: resolveDate(project.dateDue),
      sourceLanguage,
      targetLanguages: targetLanguages.join(", "),
      status: project.status
@@ -94,7 +101,7 @@ const useProjectStore = defineStore({
   },
 
   overdueProjectCount: (state) => {
-   return state.projects.filter((project) => new Date(project.dateDue) < new Date()).length;
+   return state.projects.filter((project) => dayjs(project.dateDue) <  dayjs()).length;
   }
  },
 
@@ -110,7 +117,8 @@ const useProjectStore = defineStore({
    const newProject = {
     ...project,
     id: this.projects.length + 1,
-    dateDue: new Date(project.dateDue).toISOString()
+    dateDue: dayjs(project.dateDue).format(),
+    dateCreated: dayjs().format()
    };
    const responseData = await api.createProject(newProject);
    this.loading = false;
@@ -121,8 +129,8 @@ const useProjectStore = defineStore({
    this.loading = true;
    const updatedProject = {
     ...project,
-    dateUpdated: new Date().toISOString(),
-    dateDue: new Date(project.dateDue).toISOString()
+    dateUpdated: dayjs().format(),
+    dateDue: dayjs(project.dateDue).format()
    };
    const responseData = await api.updateProject(updatedProject);
    this.loading = false;

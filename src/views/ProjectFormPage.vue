@@ -81,11 +81,11 @@ import PageWrapper from "@/components/layout/PageWrapper.vue";
 import useProjectStore from "@/stores/projects";
 import LanguagePicker from "@/components/LanguagePicker.vue";
 import { useRoute } from "vue-router";
-import { useDateFormat } from "@vueuse/core";
 import { computed, onMounted } from "vue";
 import { useI18n } from "vue-i18n";
 import router from "@/router";
 import { ROUTES, STATUSES } from "@/enums";
+import dayjs from "dayjs";
 
 const projectStore = useProjectStore();
 const route = useRoute();
@@ -130,8 +130,8 @@ onMounted(async () => {
    return;
   }
 
-  const dateDue = useDateFormat(new Date(selectedProject.dateDue), "YYYY-MM-DD");
-  projectStore.project = { ...selectedProject, dateDue: dateDue.value };
+  const dateDue = dayjs(selectedProject.dateDue).format("YYYY-MM-DD");
+  projectStore.project = { ...selectedProject, dateDue: dateDue };
  }
 });
 </script>

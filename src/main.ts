@@ -12,7 +12,7 @@ import "./index.css";
 
 const app = createApp(App);
 
-const i18n = createI18n({
+export const i18n = createI18n({
  locale: "en",
  messages: {
   en,
