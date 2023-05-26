@@ -1,7 +1,8 @@
 import axios from "axios";
 import { notification } from "ant-design-vue";
 import type { IProject } from "@/stores/projects";
-import router, { ROUTES } from "@/router";
+import router from "@/router";
+import { ROUTES } from "@/enums";
 
 interface IAxiosError extends Error {
  response?: {
@@ -18,10 +19,11 @@ class Api {
     message: "Success",
     description: "Project created successfully"
    });
-   await router.push({ name: ROUTES.PROJECTS_LIST.name });
    return data;
   } catch (err) {
    this._notifyOnError(err as Error);
+  } finally {
+   await router.push({ name: ROUTES.PROJECTS_LIST.name });
   }
  }
 
@@ -41,10 +43,11 @@ class Api {
     message: "Success",
     description: "Project updated successfully"
    });
-   await router.push({ name: ROUTES.PROJECTS_LIST.name });
    return data;
   } catch (err) {
    this._notifyOnError(err as Error);
+  } finally {
+   await router.push({ name: ROUTES.PROJECTS_LIST.name });
   }
  }
 

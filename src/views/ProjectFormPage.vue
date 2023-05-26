@@ -10,8 +10,8 @@
   >
    <a-form-item
     :name="['project', 'name']"
-    label="Name"
-    :rules="[{ required: true }]"
+    :label="$t('titles.name')"
+    :rules="[{ required: true, max: 30 }]"
    >
     <a-input
      v-model:value="projectStore.project.name"
@@ -21,19 +21,20 @@
 
    <a-form-item
     :name="['project', 'dateDue']"
-    label="Overdue date"
+    :label="$t('labels.overdueDate')"
     :rules="[{ required: true }]"
    >
     <a-date-picker
      v-model:value="projectStore.project.dateDue"
      valueFormat="YYYY-MM-DD"
+     :format="$i18n.locale === 'en'? 'YYYY-MM-DD' : 'MMM DD, YYYY'"
     />
    </a-form-item>
 
    <a-form-item
     v-if="!!$route.params.id"
     :name="['project', 'status']"
-    label="Status"
+    :label="$t('titles.status')"
     :rules="[{ required: true }]"
    >
     <a-select
@@ -44,7 +45,7 @@
 
    <a-form-item
     :name="['project', 'sourceLanguage']"
-    label="Source language"
+    :label="$t('titles.sourceLanguage')"
     :rules="[{ required: true }]"
    >
     <language-picker v-model:value="projectStore.project.sourceLanguage" />
@@ -52,7 +53,7 @@
 
    <a-form-item
     :name="['project', 'targetLanguages']"
-    label="Target languages"
+    :label="$t('titles.targetLanguages')"
     :rules="[{ required: true }]"
    >
     <language-picker
@@ -63,12 +64,13 @@
 
    <a-form-item>
     <a-button
-     type="ghost"
+     type="primary"
      html-type="submit"
      :loading="projectStore.loading"
      size="large"
-     >Submit</a-button
     >
+     {{ $t("labels.submit") }}
+    </a-button>
    </a-form-item>
   </a-form>
  </page-wrapper>
@@ -80,28 +82,36 @@ import useProjectStore from "@/stores/projects";
 import LanguagePicker from "@/components/LanguagePicker.vue";
 import { useRoute } from "vue-router";
 import { useDateFormat } from "@vueuse/core";
-import { onMounted } from "vue";
+import { computed, onMounted } from "vue";
+import { useI18n } from "vue-i18n";
+import router from "@/router";
+import { ROUTES, STATUSES } from "@/enums";
 
 const projectStore = useProjectStore();
 const route = useRoute();
+const { t, locale } = useI18n();
 
-const validateMessages = {
- required: "${label} is required!"
-};
-const options = [
+const validateMessages = computed(() => {
+ return {
+  required: t("messages.isRequired", { label: "${label}" }),
+  max: t("messages.maxLength", { label: "${label}", length: "${length}" })
+ };
+});
+
+const options = computed(() => [
  {
-  value: "NEW",
-  label: "New"
+  value: STATUSES.NEW,
+  label: t("labels.new")
  },
  {
-  value: "COMPLETED",
-  label: "Completed"
+  value: STATUSES.COMPLETED,
+  label: t("labels.completed")
  },
  {
-  value: "DELIVERED",
-  label: "Delivered"
+  value: STATUSES.DELIVERED,
+  label: t("labels.delivered")
  }
-];
+]);
 
 const onSubmit = () => {
  route.params.id
@@ -114,7 +124,11 @@ onMounted(async () => {
 
  if (route.params.id) {
   const selectedProject = projectStore.projects.find(({ id }) => id === +route.params.id);
-  if (!selectedProject) return;
+  if (!selectedProject && !route.params.id) return;
+  if (!selectedProject && !!route.params.id) {
+   await router.push({ name: ROUTES.NOT_FOUND.name });
+   return;
+  }
 
   const dateDue = useDateFormat(new Date(selectedProject.dateDue), "YYYY-MM-DD");
   projectStore.project = { ...selectedProject, dateDue: dateDue.value };

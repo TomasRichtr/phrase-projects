@@ -1,9 +1,27 @@
 <script setup lang="ts">
 import { RouterView } from "vue-router";
 import PageHeader from "@/components/PageHeader.vue";
+import { useI18n } from "vue-i18n";
+import czLocale from "ant-design-vue/es/locale/cs_CZ";
+import enLocale from "ant-design-vue/es/locale/en_GB";
+import dayjs from "dayjs";
+import "dayjs/locale/cs.js";
+import "dayjs/locale/en-gb.js";
+import { computed } from "vue";
+import { ROUTES } from "@/enums";
+
+dayjs.locale("cs");
+dayjs.locale("en-gb");
+
+const { locale } = useI18n();
+const currentLocale = computed(() => {
+ return locale.value === "cs" ? czLocale : enLocale;
+});
 </script>
 
 <template>
- <page-header />
- <RouterView />
+ <a-config-provider :locale="currentLocale">
+  <page-header v-if="$route.name !== ROUTES.NOT_FOUND.name" />
+  <RouterView />
+ </a-config-provider>
 </template>

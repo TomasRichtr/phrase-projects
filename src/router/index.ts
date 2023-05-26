@@ -1,11 +1,8 @@
 import { createRouter, createWebHistory } from "vue-router";
-import ProjectList from "@/views/ProjectListPage.vue";
-import ProjectForm from "@/views/ProjectFormPage.vue";
-
-export const ROUTES = {
- PROJECTS_LIST: { name: "projects-list", path: "/" },
- PROJECTS_FORM: { name: "project-form", path: "/project-form" }
-};
+import ProjectListPage from "@/views/ProjectListPage.vue";
+import ProjectFormPage from "@/views/ProjectFormPage.vue";
+import NotFoundPage from "@/views/NotFoundPage.vue";
+import { ROUTES } from "@/enums";
 
 const router = createRouter({
  history: createWebHistory(import.meta.env.BASE_URL),
@@ -13,12 +10,17 @@ const router = createRouter({
   {
    path: ROUTES.PROJECTS_LIST.path,
    name: ROUTES.PROJECTS_LIST.name,
-   component: ProjectList
+   component: ProjectListPage
   },
   {
    path: `${ROUTES.PROJECTS_FORM.path}/:id?`,
    name: ROUTES.PROJECTS_FORM.name,
-   component: ProjectForm
+   component: ProjectFormPage
+  },
+  {
+   path: ROUTES.NOT_FOUND.path,
+   name: ROUTES.NOT_FOUND.name,
+   component: NotFoundPage
   }
  ]
 });

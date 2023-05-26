@@ -6,14 +6,14 @@
   :loading="projectStore.loading"
   bordered
   :scroll="{ x: 1500, y: 625 }"
-  >>
+ >>
   <template
    #customFilterDropdown="{ setSelectedKeys, selectedKeys, confirm, clearFilters, column }"
   >
    <div class="p-2">
     <a-input
      ref="searchInput"
-     :placeholder="`Search ${column.dataIndex}`"
+     :placeholder="$t('placeholders.searchName')"
      :value="selectedKeys[0]"
      class="w-full mb-2 block"
      @change="(e) => setSelectedKeys(e.target.value ? [e.target.value] : [])"
@@ -29,14 +29,14 @@
       <template #icon>
        <SearchOutlined />
       </template>
-      Search
+      {{ $t('labels.search') }}
      </a-button>
      <a-button
       size="small"
       class="w-1/2"
       @click="handleReset(clearFilters)"
      >
-      Reset
+      {{ $t('labels.reset') }}
      </a-button>
     </div>
    </div>
@@ -44,19 +44,21 @@
 
   <template #bodyCell="{ column, record }">
    <template v-if="column.dataIndex === 'operation'">
-    <div class="flex gap-1">
+    <div class="flex justify-between gap-1">
      <router-link
       :to="{ name: ROUTES.PROJECTS_FORM.name, params: { id: record.id } }"
-      class="text-blue-500 text-xs flex items-center"
+      class="text-blue-500 text-xs flex items-center uppercase"
      >
-      EDIT
+      {{ $t('labels.edit') }}
      </router-link>
-     <span class="pt-1">/</span>
+     <div class="pt-1">/</div>
      <a-button
       type="link"
-      class="text-xs m-0 p-0"
+      class="text-xs m-0 p-0 uppercase w-fit"
       @click="deleteProject(record.id)"
-      >DELETE</a-button
+     >
+      {{ $t('labels.delete') }}
+     </a-button
      >
     </div>
    </template>
@@ -68,10 +70,11 @@
 import { computed, reactive, ref } from "vue";
 import { useArrayUnique } from "@vueuse/core";
 import useProjectStore, { type IProject } from "@/stores/projects";
-import { ROUTES } from "@/router";
+import { useI18n } from "vue-i18n";
+import { ROUTES } from "@/enums";
 
 const projectStore = useProjectStore();
-
+const { t } = useI18n();
 const searchInput = ref();
 const state = reactive({
  searchText: "",
@@ -121,7 +124,7 @@ const columns = computed(() => {
    width: 50
   },
   {
-   title: "Name",
+   title: t("titles.name"),
    dataIndex: "name",
    key: "name",
    customFilterDropdown: true,
@@ -139,21 +142,21 @@ const columns = computed(() => {
    }
   },
   {
-   title: "Created",
+   title: t("titles.created"),
    dataIndex: "dateCreated",
    key: "dateCreated",
    width: 150,
    ellipsis: true
   },
   {
-   title: "Updated",
+   title: t("titles.updated"),
    key: "dateUpdated",
    dataIndex: "dateUpdated",
    width: 150,
    ellipsis: true
   },
   {
-   title: "Overdue",
+   title: t("titles.overdue"),
    key: "dateDue",
    dataIndex: "dateDue",
    width: 150,
@@ -161,21 +164,21 @@ const columns = computed(() => {
    sorter: (a: IProject, b: IProject) => +new Date(a.dateDue) - +new Date(b.dateDue)
   },
   {
-   title: "Source language",
+   title: t("titles.sourceLanguage"),
    key: "sourceLanguage",
    width: 150,
    ellipsis: true,
    dataIndex: "sourceLanguage"
   },
   {
-   title: "Target languages",
+   title: t("titles.targetLanguages"),
    key: "targetLanguages",
    width: 150,
    ellipsis: true,
    dataIndex: "targetLanguages"
   },
   {
-   title: "Status",
+   title: t("titles.status"),
    key: "status",
    dataIndex: "status",
    width: 150,
@@ -186,9 +189,9 @@ const columns = computed(() => {
    onFilter: (value: string, record: IProject) => record.status.includes(value)
   },
   {
-   title: "Operation",
+   title: t("titles.operation"),
    key: "operation",
-   width: 100,
+   width: 120,
    dataIndex: "operation",
    align: "center",
    fixed: "right"
@@ -196,5 +199,3 @@ const columns = computed(() => {
  ];
 });
 </script>
-
-<style scoped></style>

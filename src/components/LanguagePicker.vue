@@ -1,3 +1,14 @@
+<template>
+ <a-select
+  v-model:value="value"
+  :mode="multiple ? 'multiple' : null"
+  show-search
+  :placeholder="$t('placeholders.selectLanguage')"
+  :options="languageOptions"
+  :filter-option="filterOption"
+ />
+</template>
+
 <script setup lang="ts">
 import languages from "language-list";
 import { computed, ref } from "vue";
@@ -19,18 +30,7 @@ const languageOptions = computed(() => {
  }));
 });
 
-const filterOption = (input: string, option: { label: string, value: string }) => {
+const filterOption = (input: string, option: { label: string; value: string }) => {
  return option.label.toLowerCase().indexOf(input.toLowerCase()) >= 0;
 };
 </script>
-
-<template>
- <a-select
-  v-model:value="value"
-  :mode="multiple ? 'multiple' : null"
-  show-search
-  placeholder="Select a language"
-  :options="languageOptions"
-  :filter-option="filterOption"
- />
-</template>

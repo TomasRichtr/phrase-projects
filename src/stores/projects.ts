@@ -1,12 +1,19 @@
 import { defineStore } from "pinia";
 import languages from "language-list";
 import api from "@/helpers/api";
+import { STATUSES } from "@/enums";
 
 interface ProjectState {
  projects: IProject[];
  project: IProject;
  loading: boolean;
 }
+
+export interface IStatuses {
+ NEW: "NEW";
+ COMPLETED: "COMPLETED";
+ DELIVERED: "DELIVERED";
+};
 
 export interface IProject {
  id: number | null;
@@ -16,7 +23,7 @@ export interface IProject {
  dateDue: string;
  sourceLanguage: string;
  targetLanguages: string[];
- status: "DELIVERED" | "COMPLETED" | "NEW";
+ status: keyof IStatuses;
 }
 
 const defaultProject: IProject = {
@@ -25,7 +32,7 @@ const defaultProject: IProject = {
  dateDue: "",
  sourceLanguage: "",
  targetLanguages: [],
- status: "NEW",
+ status: STATUSES.NEW,
  dateUpdated: "",
  dateCreated: new Date().toISOString()
 };
