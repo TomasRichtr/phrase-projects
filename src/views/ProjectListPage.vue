@@ -5,8 +5,8 @@
 </template>
 
 <script setup lang="ts">
-import PageWrapper from "@/components/layout/PageWrapper.vue";
 import ProjectTable from "@/components/ProjectTable.vue";
+import PageWrapper from "@/components/layout/PageWrapper.vue";
 import useProjectStore from "@/stores/projects";
 import { onMounted } from "vue";
 

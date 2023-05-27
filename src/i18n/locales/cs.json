@@ -1,0 +1,36 @@
+{
+ "labels": {
+  "newProject": "Vytvořit nový projekt",
+  "mostProminentLanguage": "Nejvíce překládaný jazyk",
+  "overdueDate": "Datum zhotovení",
+  "new": "Nový",
+  "completed": "Dokončeno",
+  "delivered": "Doručeno",
+  "backToHome": "Zpět na domovskou stránku",
+  "submit": "Uložit",
+  "search": "Hledat",
+  "reset": "Reset",
+  "edit": "Editovat",
+  "delete": "Smazat"
+ },
+ "titles": {
+  "projects": "projekty",
+  "name": "Jméno",
+  "created": "Vytvořeno",
+  "updated": "Aktualizováno",
+  "overdue": "Po termínu",
+  "sourceLanguage": "Výchozí jazyk",
+  "targetLanguages": "Cílové jazyky",
+  "status": "Status",
+  "operation": "Akce"
+ },
+ "placeholders": {
+  "selectLanguage": "Vyber jazyk",
+  "searchName": "Najdi dle jména"
+ },
+ "messages": {
+  "isRequired": "{label} je povinné pole!",
+  "maxLength": "{label} musí být kratší než {length}!",
+  "notFound": "Stránka nenalezena!"
+ }
+}

@@ -1,24 +1,14 @@
-import { createApp } from "vue";
-import { createPinia } from "pinia";
-import { createI18n } from "vue-i18n";
-import en from "./locales/en.json";
-import cs from "./locales/cs.json";
+import i18n from "@/i18n";
 import Antd from "ant-design-vue";
 import "ant-design-vue/dist/antd.css";
+import { createPinia } from "pinia";
+import { createApp } from "vue";
 
 import App from "./App.vue";
-import router from "./router";
 import "./index.css";
+import router from "./router";
 
 const app = createApp(App);
-
-export const i18n = createI18n({
- locale: "en",
- messages: {
-  en,
-  cs
- }
-});
 
 app.use(createPinia());
 app.use(router);

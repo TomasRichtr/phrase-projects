@@ -9,9 +9,11 @@
     "dev": "vite --host --port 3000",
     "format": "prettier --write src/",
     "preview": "vite preview",
-    "type-check": "vue-tsc --noEmit -p tsconfig.vitest.json --composite false"
+    "type-check": "vue-tsc --noEmit -p tsconfig.vitest.json --composite false",
+    "test": "jest src"
   },
   "dependencies": {
+    "@trivago/prettier-plugin-sort-imports": "^4.1.1",
     "@vueuse/core": "^10.1.2",
     "@vueuse/integrations": "^10.1.2",
     "ant-design-vue": "^3.2.20",

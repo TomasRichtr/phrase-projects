@@ -27,7 +27,7 @@
     <a-date-picker
      v-model:value="projectStore.project.dateDue"
      valueFormat="YYYY-MM-DD"
-     :format="$i18n.locale === 'en'? 'YYYY-MM-DD' : 'MMM DD, YYYY'"
+     :format="$i18n.locale === 'en' ? 'YYYY-MM-DD' : 'MMM DD, YYYY'"
     />
    </a-form-item>
 
@@ -77,15 +77,15 @@
 </template>
 
 <script setup lang="ts">
-import PageWrapper from "@/components/layout/PageWrapper.vue";
-import useProjectStore from "@/stores/projects";
 import LanguagePicker from "@/components/LanguagePicker.vue";
-import { useRoute } from "vue-router";
+import PageWrapper from "@/components/layout/PageWrapper.vue";
+import { ROUTES, STATUSES } from "@/enums";
+import router from "@/router";
+import useProjectStore from "@/stores/projects";
+import dayjs from "dayjs";
 import { computed, onMounted } from "vue";
 import { useI18n } from "vue-i18n";
-import router from "@/router";
-import { ROUTES, STATUSES } from "@/enums";
-import dayjs from "dayjs";
+import { useRoute } from "vue-router";
 
 const projectStore = useProjectStore();
 const route = useRoute();

@@ -6,7 +6,7 @@
   :loading="projectStore.loading"
   bordered
   :scroll="{ x: 1500, y: 625 }"
- >>
+  >>
   <template
    #customFilterDropdown="{ setSelectedKeys, selectedKeys, confirm, clearFilters, column }"
   >
@@ -29,14 +29,14 @@
       <template #icon>
        <SearchOutlined />
       </template>
-      {{ $t('labels.search') }}
+      {{ $t("labels.search") }}
      </a-button>
      <a-button
       size="small"
       class="w-1/2"
       @click="handleReset(clearFilters)"
      >
-      {{ $t('labels.reset') }}
+      {{ $t("labels.reset") }}
      </a-button>
     </div>
    </div>
@@ -46,10 +46,10 @@
    <template v-if="column.dataIndex === 'operation'">
     <div class="flex justify-between gap-1">
      <router-link
-      :to="{ name: ROUTES.PROJECTS_FORM.name, params: { id: record.id } }"
+      :to="tr.i18nRoute({ name: ROUTES.PROJECTS_FORM.name, params: { id: record.id } })"
       class="text-blue-500 text-xs flex items-center uppercase"
      >
-      {{ $t('labels.edit') }}
+      {{ $t("labels.edit") }}
      </router-link>
      <div class="pt-1">/</div>
      <a-button
@@ -57,9 +57,8 @@
       class="text-xs m-0 p-0 uppercase w-fit"
       @click="deleteProject(record.id)"
      >
-      {{ $t('labels.delete') }}
-     </a-button
-     >
+      {{ $t("labels.delete") }}
+     </a-button>
     </div>
    </template>
   </template>
@@ -67,11 +66,12 @@
 </template>
 
 <script setup lang="ts">
-import { computed, reactive, ref } from "vue";
-import { useArrayUnique } from "@vueuse/core";
-import useProjectStore, { type IProject } from "@/stores/projects";
-import { useI18n } from "vue-i18n";
 import { ROUTES } from "@/enums";
+import tr from "@/i18n/translationMiddleware";
+import useProjectStore, { type IProject } from "@/stores/projects";
+import { useArrayUnique } from "@vueuse/core";
+import { computed, reactive, ref } from "vue";
+import { useI18n } from "vue-i18n";
 
 const projectStore = useProjectStore();
 const { t } = useI18n();

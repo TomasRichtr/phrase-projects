@@ -1,10 +1,11 @@
-import { defineStore } from "pinia";
-import languages from "language-list";
-import api from "@/helpers/api";
 import { STATUSES } from "@/enums";
+import api from "@/helpers/api";
 import dayjs from "dayjs";
 import localizedFormat from "dayjs/plugin/localizedFormat";
-dayjs.extend(localizedFormat)
+import languages from "language-list";
+import { defineStore } from "pinia";
+
+dayjs.extend(localizedFormat);
 
 interface ProjectState {
  projects: IProject[];
@@ -16,7 +17,7 @@ export interface IStatuses {
  NEW: "NEW";
  COMPLETED: "COMPLETED";
  DELIVERED: "DELIVERED";
-};
+}
 
 export interface IProject {
  id: number | null;
@@ -37,12 +38,12 @@ const defaultProject: IProject = {
  targetLanguages: [],
  status: STATUSES.NEW,
  dateUpdated: "",
- dateCreated:dayjs().format()
+ dateCreated: dayjs().format()
 };
 
 const resolveDate = (date: string) => {
- return date ? dayjs(date).format('ll') : ''
-}
+ return date ? dayjs(date).format("ll") : "";
+};
 
 const useProjectStore = defineStore({
  id: "projects",
@@ -101,7 +102,7 @@ const useProjectStore = defineStore({
   },
 
   overdueProjectCount: (state) => {
-   return state.projects.filter((project) => dayjs(project.dateDue) <  dayjs()).length;
+   return state.projects.filter((project) => dayjs(project.dateDue) < dayjs()).length;
   }
  },
 

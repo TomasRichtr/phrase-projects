@@ -1,8 +1,8 @@
-import axios from "axios";
-import { notification } from "ant-design-vue";
-import type { IProject } from "@/stores/projects";
-import router from "@/router";
 import { ROUTES } from "@/enums";
+import router from "@/router";
+import type { IProject } from "@/stores/projects";
+import { notification } from "ant-design-vue";
+import axios from "axios";
 
 interface IAxiosError extends Error {
  response?: {
