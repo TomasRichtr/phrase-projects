@@ -29,7 +29,8 @@ const useProjectStore = defineStore({
     ({
       projects: [],
       project: defaultProject,
-      loading: false
+      loading: false,
+      hasError: false
     } as IProjectState),
 
   getters: {

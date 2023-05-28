@@ -59,6 +59,13 @@
         </div>
       </template>
     </template>
+
+    <template
+      v-if="projectStore.hasError"
+      #emptyText
+    >
+      <span>Oops, something went wrong. Please refresh the page</span>
+    </template>
   </a-table>
 </template>
 

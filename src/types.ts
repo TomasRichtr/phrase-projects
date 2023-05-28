@@ -4,6 +4,7 @@ export interface IProjectState {
   projects: IProject[];
   project: IProject;
   loading: boolean;
+  hasError: boolean;
 }
 
 export interface IStatuses {
