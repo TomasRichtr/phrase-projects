@@ -2,34 +2,34 @@ import LanguagePicker from "@/components/LanguagePicker.vue";
 import { mount } from "@vue/test-utils";
 
 describe("SelectLanguage", () => {
- it("renders a select component", () => {
-  const wrapper = mount(LanguagePicker);
+  it("renders a select component", () => {
+    const wrapper = mount(LanguagePicker);
 
-  expect(wrapper.find("select")).toBeTruthy(); // or use appropriate selector
- });
-
- it("sets mode to multiple when `multiple` prop is true", () => {
-  const wrapper = mount(LanguagePicker, {
-   props: {
-    multiple: true
-   }
+    expect(wrapper.find("select")).toBeTruthy(); // or use appropriate selector
   });
 
-  expect(wrapper.props().multiple).toBe(true);
-  expect(wrapper.find('[mode="multiple"]')).toBeTruthy();
- });
+  it("sets mode to multiple when `multiple` prop is true", () => {
+    const wrapper = mount(LanguagePicker, {
+      props: {
+        multiple: true
+      }
+    });
 
- it("maps language data to options correctly", () => {
-  const wrapper = mount(LanguagePicker);
-  const langData = require("language-list")().getData();
+    expect(wrapper.props().multiple).toBe(true);
+    expect(wrapper.find('[mode="multiple"]')).toBeTruthy();
+  });
 
-  const expectedOptions = langData.map(
-   ({ language, code }: { language: string; code: string }) => ({
-    label: language,
-    value: code.toString()
-   })
-  );
+  it("maps language data to options correctly", () => {
+    const wrapper = mount(LanguagePicker);
+    const langData = require("language-list")().getData();
 
-  expect(wrapper.vm.languageOptions).toEqual(expectedOptions);
- });
+    const expectedOptions = langData.map(
+      ({ language, code }: { language: string; code: string }) => ({
+        label: language,
+        value: code.toString()
+      })
+    );
+
+    expect(wrapper.vm.languageOptions).toEqual(expectedOptions);
+  });
 });

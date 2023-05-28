@@ -3,14 +3,14 @@
 @tailwind utilities;
 
 .ant-btn {
- @apply rounded;
+  @apply rounded;
 }
 .ant-btn-primary {
- @apply bg-teal-500;
- @apply focus:bg-teal-500;
- @apply hover:bg-white;
- @apply hover:text-teal-500;
- @apply border-teal-500;
- @apply hover:border-teal-500;
- @apply w-40;
+  @apply bg-teal-500;
+  @apply focus:bg-teal-500;
+  @apply hover:bg-white;
+  @apply hover:text-teal-500;
+  @apply border-teal-500;
+  @apply hover:border-teal-500;
+  @apply w-40;
 }

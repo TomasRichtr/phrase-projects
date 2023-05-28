@@ -1,7 +1,7 @@
 <template>
- <page-wrapper>
-  <project-table />
- </page-wrapper>
+  <page-wrapper>
+    <project-table />
+  </page-wrapper>
 </template>
 
 <script setup lang="ts">
@@ -13,6 +13,6 @@ import { onMounted } from "vue";
 const projectStore = useProjectStore();
 
 onMounted(async () => {
- await projectStore.fetchProjects();
+  await projectStore.fetchProjects();
 });
 </script>

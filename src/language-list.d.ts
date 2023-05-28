@@ -1,5 +1,5 @@
 declare module "language-list" {
- const languages: Function;
+  const languages: Function;
 
- export default languages as Function;
+  export default languages as Function;
 }

@@ -1,7 +1,7 @@
 <template>
- <a-button @click="changeLocales($i18n.locale === 'cs' ? 'en' : 'cs')">
-  {{ pickerLabel }}
- </a-button>
+  <a-button @click="changeLocales($i18n.locale === LOCALES.CS ? LOCALES.EN : LOCALES.CS)">
+    {{ pickerLabel }}
+  </a-button>
 </template>
 
 <script lang="ts" setup>
@@ -15,17 +15,17 @@ const router = useRouter();
 const route = useRoute();
 
 const pickerLabel = computed(() => {
- return locale.value === "cs" ? LOCALES.EN.toUpperCase() : LOCALES.CS.toUpperCase();
+  return locale.value === LOCALES.CS ? LOCALES.EN.toUpperCase() : LOCALES.CS.toUpperCase();
 });
 
 const changeLocales = (newLocale) => {
- locale.value = newLocale;
- localStorage.setItem("phrase-project-locale", newLocale);
- router.replace({ params: { locale: newLocale } });
+  locale.value = newLocale;
+  localStorage.setItem("phrase-project-locale", newLocale);
+  router.replace({ params: { locale: newLocale } });
 };
 
 onMounted(() => {
- const savedLocale = localStorage.getItem("phrase-project-locale");
- changeLocales((route.params.locale as string) || savedLocale || DEFAULT_LOCALE);
+  const savedLocale = localStorage.getItem("phrase-project-locale");
+  changeLocales((route.params.locale as string) || savedLocale || DEFAULT_LOCALE);
 });
 </script>

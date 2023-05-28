@@ -1,11 +1,6 @@
 {
   "compilerOptions": {
-    "types": [
-      "vue",
-      "vite/client",
-      "@types/jest",
-      "jest"
-    ],
+    "types": ["vue", "vite/client", "@types/jest", "jest"],
     "module": "commonjs",
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,

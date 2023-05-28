@@ -5,16 +5,16 @@ import { defineConfig } from "vitest/config";
 import viteConfig from "./vite.config";
 
 export default mergeConfig(
- viteConfig,
- defineConfig({
-  test: {
-   setupFiles: ["src/components/__tests__/unit.setup.ts"],
-   globals: true,
-   environment: "jsdom",
-   root: fileURLToPath(new URL("./", import.meta.url)),
-   transformMode: {
-    web: [/\.[jt]sx$/]
-   }
-  }
- })
+  viteConfig,
+  defineConfig({
+    test: {
+      setupFiles: ["src/components/__tests__/unit.setup.ts"],
+      globals: true,
+      environment: "jsdom",
+      root: fileURLToPath(new URL("./", import.meta.url)),
+      transformMode: {
+        web: [/\.[jt]sx$/]
+      }
+    }
+  })
 );
