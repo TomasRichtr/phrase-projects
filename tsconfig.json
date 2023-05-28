@@ -3,7 +3,8 @@
     "types": [
       "vue",
       "vite/client",
-      "@types/jest"
+      "@types/jest",
+      "jest"
     ],
     "module": "commonjs",
     "moduleResolution": "node",

@@ -32,5 +32,9 @@
   "isRequired": "{label} je povinné pole!",
   "maxLength": "{label} musí být kratší než {length}!",
   "notFound": "Stránka nenalezena!"
+ },
+ "languages": {
+  "cs": "Čeština",
+  "en": "Angličtina"
  }
 }

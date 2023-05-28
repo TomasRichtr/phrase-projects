@@ -18,14 +18,14 @@
    </a-button>
   </template>
 
-  <div class="">
-   <a-tag color="blue">{{ $t("labels.new") }}: {{ projectStore.projectsByStatuses.new }}</a-tag>
-   <a-tag color="cyan"
-    >{{ $t("labels.completed") }}: {{ projectStore.projectsByStatuses.completed }}</a-tag
-   >
-   <a-tag color="green"
-    >{{ $t("labels.delivered") }}: {{ projectStore.projectsByStatuses.delivered }}</a-tag
-   >
+  <div>
+   <a-tag color="blue"> {{ $t("labels.new") }}: {{ projectStore.projectsByStatuses.new }}</a-tag>
+   <a-tag color="cyan">
+    {{ $t("labels.completed") }}: {{ projectStore.projectsByStatuses.completed }}
+   </a-tag>
+   <a-tag color="green">
+    {{ $t("labels.delivered") }}: {{ projectStore.projectsByStatuses.delivered }}
+   </a-tag>
   </div>
 
   <div class="mt-2">

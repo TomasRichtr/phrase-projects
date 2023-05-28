@@ -5,6 +5,24 @@ import ProjectFormPage from "@/views/ProjectFormPage.vue";
 import ProjectListPage from "@/views/ProjectListPage.vue";
 import { RouterView, createRouter, createWebHistory } from "vue-router";
 
+const ROUTE_LIST = [
+ {
+  path: "",
+  name: ROUTES.PROJECTS_LIST.name,
+  component: ProjectListPage
+ },
+ {
+  path: `/${ROUTES.PROJECTS_FORM.path}/:id?`,
+  name: ROUTES.PROJECTS_FORM.name,
+  component: ProjectFormPage
+ },
+ {
+  path: `/${ROUTES.NOT_FOUND.path}`,
+  name: ROUTES.NOT_FOUND.name,
+  component: NotFoundPage
+ }
+];
+
 const router = createRouter({
  history: createWebHistory(import.meta.env.BASE_URL),
  routes: [
@@ -12,23 +30,7 @@ const router = createRouter({
    path: "/:locale?",
    component: RouterView,
    beforeEnter: Tr.routeMiddleware,
-   children: [
-    {
-     path: "",
-     name: ROUTES.PROJECTS_LIST.name,
-     component: ProjectListPage
-    },
-    {
-     path: `${ROUTES.PROJECTS_FORM.path}/:id?`,
-     name: ROUTES.PROJECTS_FORM.name,
-     component: ProjectFormPage
-    },
-    {
-     path: ROUTES.NOT_FOUND.path,
-     name: ROUTES.NOT_FOUND.name,
-     component: NotFoundPage
-    }
-   ]
+   children: ROUTE_LIST
   }
  ]
 });

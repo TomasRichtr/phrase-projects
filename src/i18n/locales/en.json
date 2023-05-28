@@ -1,36 +1,40 @@
 {
- "labels": {
-  "newProject": "Create new project",
-  "mostProminentLanguage": "Most prominent source language",
-  "overdueDate": "Overdue date",
-  "new": "New",
-  "completed": "Completed",
-  "delivered": "Delivered",
-  "backToHome": "Back to home page",
-  "submit": "Submit",
-  "search": "Search",
-  "reset": "Reset",
-  "edit": "Edit",
-  "delete": "Delete"
- },
- "titles": {
-  "projects": "projects",
-  "name": "Name",
-  "created": "Created",
-  "updated": "Updated",
-  "overdue": "Overdue",
-  "sourceLanguage": "Source language",
-  "targetLanguages": "Target languages",
-  "status": "Status",
-  "operation": "Operation"
- },
- "placeholders": {
-  "selectLanguage": "Select a language",
-  "searchName": "Search name"
- },
- "messages": {
-  "isRequired": "{label} is required!",
-  "maxLength": "{label} must be shorter than {length}!",
-  "notFound": "Page not found!"
- }
+  "labels": {
+    "newProject": "Create new project",
+    "mostProminentLanguage": "Most prominent source language",
+    "overdueDate": "Overdue date",
+    "new": "New",
+    "completed": "Completed",
+    "delivered": "Delivered",
+    "backToHome": "Back to home page",
+    "submit": "Submit",
+    "search": "Search",
+    "reset": "Reset",
+    "edit": "Edit",
+    "delete": "Delete"
+  },
+  "titles": {
+    "projects": "projects",
+    "name": "Name",
+    "created": "Created",
+    "updated": "Updated",
+    "overdue": "Overdue",
+    "sourceLanguage": "Source language",
+    "targetLanguages": "Target languages",
+    "status": "Status",
+    "operation": "Operation"
+  },
+  "placeholders": {
+    "selectLanguage": "Select a language",
+    "searchName": "Search name"
+  },
+  "messages": {
+    "isRequired": "{label} is required!",
+    "maxLength": "{label} must be shorter than {length}!",
+    "notFound": "Page not found!"
+  },
+  "languages": {
+    "cs": "Czech",
+    "en": "English"
+  }
 }

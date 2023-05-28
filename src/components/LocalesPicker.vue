@@ -5,8 +5,7 @@
 </template>
 
 <script lang="ts" setup>
-import { DEFAULT_LOCALE } from "@/enums";
-import languages from "language-list";
+import { DEFAULT_LOCALE, LOCALES } from "@/enums";
 import { computed, onMounted } from "vue";
 import { useI18n } from "vue-i18n";
 import { useRoute, useRouter } from "vue-router";
@@ -16,9 +15,7 @@ const router = useRouter();
 const route = useRoute();
 
 const pickerLabel = computed(() => {
- return locale.value === "cs"
-  ? languages().getLanguageName("en")
-  : languages().getLanguageName("cs");
+ return locale.value === "cs" ? LOCALES.EN.toUpperCase() : LOCALES.CS.toUpperCase();
 });
 
 const changeLocales = (newLocale) => {
@@ -29,7 +26,6 @@ const changeLocales = (newLocale) => {
 
 onMounted(() => {
  const savedLocale = localStorage.getItem("phrase-project-locale");
- console.log(route.params);
  changeLocales((route.params.locale as string) || savedLocale || DEFAULT_LOCALE);
 });
 </script>

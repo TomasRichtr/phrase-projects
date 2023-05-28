@@ -30,7 +30,7 @@ export interface IProject {
  status: keyof IStatuses;
 }
 
-const defaultProject: IProject = {
+export const defaultProject: IProject = {
  id: null,
  name: "",
  dateDue: "",
