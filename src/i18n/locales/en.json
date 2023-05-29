@@ -33,7 +33,7 @@
   },
   "messages": {
     "isRequired": "{label} is required!",
-    "maxLength": "{label} must be shorter than {length}!",
+    "maxLength": "{label} must be shorter than {length} characters!",
     "notFound": "Page not found!",
     "unknownError": "Oops something went wrong, please refresh the page.",
     "projectUpdated": "Project updated successfully!",

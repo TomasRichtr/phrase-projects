@@ -33,7 +33,7 @@
   },
   "messages": {
     "isRequired": "{label} je povinné pole!",
-    "maxLength": "{label} musí být kratší než {length}!",
+    "maxLength": "{label} musí být kratší než {length} znaků!",
     "notFound": "Stránka nenalezena!",
     "unknownError": "Pardon, něco se nepovedlo. Prosim refreshněte stránku.",
     "projectUpdated": "Projekt byl aktualizován",

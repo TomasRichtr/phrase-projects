@@ -6,6 +6,7 @@
       layout="vertical"
       :validate-messages="validateMessages"
       class="w-full"
+      scrollToFirstError
       @finish="onSubmit"
     >
       <a-form-item
@@ -14,9 +15,9 @@
         :rules="[{ required: true, max: 30 }]"
       >
         <a-input
+          ref="nameInput"
           v-model:value="projectStore.project.name"
           :placeholder="$t('placeholders.insertName')"
-          ref="nameInput"
         />
       </a-form-item>
 
@@ -96,7 +97,9 @@ const nameInput = ref();
 const validateMessages = computed(() => {
   return {
     required: t("messages.isRequired", { label: "${label}" }),
-    max: t("messages.maxLength", { label: "${label}", length: "${length}" })
+    string: {
+      max: t("messages.maxLength", { label: "${label}", length: "${max}" })
+    }
   };
 });
 
