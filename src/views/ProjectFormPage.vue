@@ -85,7 +85,7 @@ import { ROUTES, STATUSES } from "@/enums";
 import router from "@/router";
 import useProjectStore from "@/stores/projects";
 import dayjs from "dayjs";
-import { computed, onMounted, ref } from "vue";
+import { computed, onBeforeUnmount, onMounted, ref } from "vue";
 import { useI18n } from "vue-i18n";
 import { useRoute } from "vue-router";
 
@@ -136,10 +136,12 @@ onMounted(async () => {
 
     const dateDue = dayjs(selectedProject.dateDue).format("YYYY-MM-DD");
     projectStore.project = { ...selectedProject, dateDue: dateDue };
-  } else {
-    projectStore.resetProject();
   }
 
   nameInput.value.$el.focus();
+});
+
+onBeforeUnmount(() => {
+  projectStore.resetProject();
 });
 </script>
