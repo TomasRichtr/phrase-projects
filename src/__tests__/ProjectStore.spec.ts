@@ -1,9 +1,8 @@
+import { LOCALES } from "@/enums";
 import useProjectStore, { defaultProject } from "@/stores/projects";
+import { type IProject } from "@/types";
 import dayjs from "dayjs";
 import { vi } from "vitest";
-
-import { LOCALES } from "../../enums";
-import { type IProject } from "../../types";
 
 const projectList: IProject[] = [
   {

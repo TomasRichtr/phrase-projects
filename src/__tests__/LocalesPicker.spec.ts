@@ -1,7 +1,6 @@
 import LocalesPicker from "@/components/LocalesPicker.vue";
+import { LOCALES } from "@/enums";
 import { mount } from "@vue/test-utils";
-
-import { LOCALES } from "../../enums";
 
 describe("LocalesPicker", () => {
   it("pickerLabel returns the correct language name", async () => {
@@ -15,7 +14,7 @@ describe("LocalesPicker", () => {
     wrapper.vm.changeLocales(LOCALES.EN);
     await wrapper.vm.$nextTick();
 
-    expect(wrapper.vm.pickerLabel).toBe(LOCALES.CS);
+    expect(wrapper.vm.pickerLabel).toBe(LOCALES.CS.toUpperCase());
   });
 
   it("changeLocales sets the correct locale and updates the router", () => {
