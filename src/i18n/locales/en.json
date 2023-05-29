@@ -22,7 +22,9 @@
     "sourceLanguage": "Source language",
     "targetLanguages": "Target languages",
     "status": "Status",
-    "operation": "Operation"
+    "operation": "Operation",
+    "success": "Success",
+    "failure": "Failure"
   },
   "placeholders": {
     "selectLanguage": "Select a language",
@@ -31,7 +33,11 @@
   "messages": {
     "isRequired": "{label} is required!",
     "maxLength": "{label} must be shorter than {length}!",
-    "notFound": "Page not found!"
+    "notFound": "Page not found!",
+    "unknownError": "Oops something went wrong, please refresh the page.",
+    "projectUpdated": "Project updated successfully!",
+    "projectCreated": "Project created successfully!",
+    "projectDeleted": "Project deleted successfully!"
   },
   "languages": {
     "cs": "Czech",

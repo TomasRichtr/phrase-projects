@@ -64,7 +64,7 @@
       v-if="projectStore.hasError"
       #emptyText
     >
-      <span>Oops, something went wrong. Please refresh the page</span>
+      <span>{{ $t("messages.unknownError") }}</span>
     </template>
   </a-table>
 </template>

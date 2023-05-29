@@ -22,7 +22,9 @@
     "sourceLanguage": "Výchozí jazyk",
     "targetLanguages": "Cílové jazyky",
     "status": "Status",
-    "operation": "Akce"
+    "operation": "Akce",
+    "success": "Úspěch",
+    "failure": "Selhání"
   },
   "placeholders": {
     "selectLanguage": "Vyber jazyk",
@@ -31,7 +33,11 @@
   "messages": {
     "isRequired": "{label} je povinné pole!",
     "maxLength": "{label} musí být kratší než {length}!",
-    "notFound": "Stránka nenalezena!"
+    "notFound": "Stránka nenalezena!",
+    "unknownError": "Pardon, něco se nepovedlo. Prosim refreshněte stránku.",
+    "projectUpdated": "Projekt byl aktualizován",
+    "projectCreated": "Projekt byl vytvořen",
+    "projectDeleted": "Projekt byl smazán"
   },
   "languages": {
     "cs": "Čeština",
