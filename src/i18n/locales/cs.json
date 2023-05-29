@@ -28,7 +28,8 @@
   },
   "placeholders": {
     "selectLanguage": "Vyber jazyk",
-    "searchName": "Najdi dle jména"
+    "searchName": "Najdi dle jména",
+    "insertName": "Vlož jméno"
   },
   "messages": {
     "isRequired": "{label} je povinné pole!",

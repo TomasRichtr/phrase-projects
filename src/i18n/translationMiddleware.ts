@@ -18,9 +18,21 @@ const Trans = {
     _from: RouteLocationNormalized,
     next: NavigationGuardNext
   ) {
-    if (to.params.locale && Object.values(LOCALES).includes(DEFAULT_LOCALE)) return next();
+    if (to.params.locale && Object.values(LOCALES).includes(DEFAULT_LOCALE)) {
+      localStorage.setItem("phrase-project-locale", to.params.locale as string);
+      i18n.global.locale.value = to.params.locale;
+      return next();
+    }
+
+    const savedLocale = localStorage.getItem("phrase-project-locale");
+    if (savedLocale && Object.values(LOCALES).includes(savedLocale)) {
+      localStorage.setItem("phrase-project-locale", savedLocale);
+      i18n.global.locale.value = savedLocale;
+      return next(savedLocale);
+    }
 
     i18n.global.locale.value = DEFAULT_LOCALE;
+    localStorage.setItem("phrase-project-locale", DEFAULT_LOCALE);
     return next(DEFAULT_LOCALE);
   }
 };

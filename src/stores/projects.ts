@@ -12,7 +12,7 @@ export const defaultProject: IProject = {
   id: null,
   name: "",
   dateDue: "",
-  sourceLanguage: "",
+  sourceLanguage: null,
   targetLanguages: [],
   status: STATUSES.NEW,
   dateUpdated: "",
@@ -37,7 +37,7 @@ const useProjectStore = defineStore({
     projectList: (state) => {
       return state.projects.map((project) => {
         const getLanguage = (code: string) => languages().getLanguageName(code);
-        const sourceLanguage = getLanguage(project.sourceLanguage);
+        const sourceLanguage = project.sourceLanguage ? getLanguage(project.sourceLanguage) : null;
         const targetLanguages = project.targetLanguages.map((code) => getLanguage(code));
         return {
           id: project.id,
@@ -58,6 +58,8 @@ const useProjectStore = defineStore({
       const count: { [key: string]: any } = {};
 
       state.projects.forEach((project) => {
+        if (!project.sourceLanguage) return;
+
         if (count[project.sourceLanguage]) {
           count[project.sourceLanguage] += 1;
         } else {
@@ -121,6 +123,10 @@ const useProjectStore = defineStore({
       this.loading = true;
       await api.deleteProject(id);
       this.loading = false;
+    },
+
+    resetProject() {
+      this.project = defaultProject;
     }
   }
 });

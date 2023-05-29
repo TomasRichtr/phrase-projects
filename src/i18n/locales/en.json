@@ -28,7 +28,8 @@
   },
   "placeholders": {
     "selectLanguage": "Select a language",
-    "searchName": "Search name"
+    "searchName": "Search name",
+    "insertName": "Insert name"
   },
   "messages": {
     "isRequired": "{label} is required!",

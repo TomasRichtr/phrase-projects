@@ -15,7 +15,8 @@
       >
         <a-input
           v-model:value="projectStore.project.name"
-          placeholder="Insert name..."
+          :placeholder="$t('placeholders.insertName')"
+          ref="nameInput"
         />
       </a-form-item>
 
@@ -83,14 +84,15 @@ import { ROUTES, STATUSES } from "@/enums";
 import router from "@/router";
 import useProjectStore from "@/stores/projects";
 import dayjs from "dayjs";
-import { computed, onMounted } from "vue";
+import { computed, onMounted, ref } from "vue";
 import { useI18n } from "vue-i18n";
 import { useRoute } from "vue-router";
 
 const projectStore = useProjectStore();
 const route = useRoute();
-const { t, locale } = useI18n();
+const { t } = useI18n();
 
+const nameInput = ref();
 const validateMessages = computed(() => {
   return {
     required: t("messages.isRequired", { label: "${label}" }),
@@ -124,14 +126,17 @@ onMounted(async () => {
 
   if (route.params.id) {
     const selectedProject = projectStore.projects.find(({ id }) => id === +route.params.id);
-    if (!selectedProject && !route.params.id) return;
-    if (!selectedProject && !!route.params.id) {
+    if (!selectedProject) {
       await router.push({ name: ROUTES.NOT_FOUND.name });
       return;
     }
 
     const dateDue = dayjs(selectedProject.dateDue).format("YYYY-MM-DD");
     projectStore.project = { ...selectedProject, dateDue: dateDue };
+  } else {
+    projectStore.resetProject();
   }
+
+  nameInput.value.$el.focus();
 });
 </script>

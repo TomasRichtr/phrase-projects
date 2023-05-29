@@ -19,7 +19,7 @@ export interface IProject {
   dateCreated: string;
   dateUpdated: string;
   dateDue: string;
-  sourceLanguage: string;
+  sourceLanguage: string | null;
   targetLanguages: string[];
   status: keyof IStatuses;
 }
